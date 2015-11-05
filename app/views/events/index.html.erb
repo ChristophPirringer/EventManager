@@ -1,0 +1,33 @@
+<h1>Events</h1>
+
+  <hr>
+
+<% if current_user %>
+
+  <% if @user.events.any? %>
+    <ul id="event-list">  <%= render @events %>  </ul>
+  <% else %>
+    <p>You aint got no events yet dear user.</p>
+  <% end %>
+
+  <ul>
+    <%= link_to "new event", new_user_event_path(current_user), id: "new-event-form", remote: true %>
+    <div id="new-event-form-receiver"></div>
+  </ul>
+
+  <hr>
+
+  <ul>
+    <%= link_to "new tag", new_tag_path, id: "new-tag-form", remote: true %>
+    <div id="new-tag-form-receiver"></div>
+  </ul>
+
+  <% if Tag.any? %>
+    <ul id="tag-list">  <%= render @tags %>  </ul>
+  <% else %>
+    <p>You aint got no tags yet dear user.</p>
+  <% end %>
+
+<% else %>
+  <h1>Please Log In To Use Our Service</h1>
+<% end %>

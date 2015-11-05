@@ -1,0 +1,5 @@
+<%= form_for object, remote: true do |f|%>
+  <%= f.label :name %>
+  <%= f.text_field :name, :value => 'Education' %>
+  <%= f.submit "Create Tag" %>
+<% end %>

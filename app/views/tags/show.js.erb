@@ -1,0 +1,1 @@
+$('#tag_information_<%= @tag.id %>').empty().html('<%= j render "tag_information", object: @tag %>').click(function() { $(this).empty(); });

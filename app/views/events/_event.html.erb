@@ -1,0 +1,4 @@
+<li>
+  <%= link_to event.title, user_event_path(current_user, event), id: "event-li-#{event.id}", remote: true %>
+  <div id = "event-information-<%= event.id %>"></div>
+</li>

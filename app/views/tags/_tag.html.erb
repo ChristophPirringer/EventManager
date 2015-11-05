@@ -1,0 +1,4 @@
+<li>
+  <%= link_to tag.name, tag_path(tag), id: "tag-li-#{tag.id}", remote: true %>
+  <div id = "tag_information_<%= tag.id %>"></div>
+</li>

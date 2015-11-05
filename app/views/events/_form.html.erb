@@ -1,0 +1,13 @@
+<%= form_for [current_user, object], remote: true do |f|%>
+  <%= f.label :title %>
+  <%= f.text_field :title, :value => 'event title' %>
+  <%= f.label :short_description %>
+  <%= f.text_field :short_description, :value => "one sentence to describe your event" %>
+  <%= f.label :long_description %>
+  <%= f.text_area :long_description, :value => "a concite description of your event", :size  => "24x6"%>
+  <%= f.label :address %>
+  <%= f.text_field :address, :value => "where does the event happen" %>
+  <%= f.label :date %>
+  <%= f.text_field :date, :value => "2015-12-14" %>
+  <%= f.submit "Create Event" %>
+<% end %>

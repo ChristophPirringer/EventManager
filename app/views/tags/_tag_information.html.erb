@@ -1,0 +1,7 @@
+<%= object.name %><br>
+
+<% if object.events.any? %>
+  <%= render @events %><br>
+<% else %>
+  <p>There are no events attached to this tag yet</p>
+<% end %>

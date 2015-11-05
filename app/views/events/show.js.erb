@@ -1,0 +1,1 @@
+$('#event-information-<%= @event.id %>').html('<%= j render "information", object: @event %>').click(function() { $(this).empty(); });
