@@ -13,8 +13,13 @@ class EventsController < ApplicationController
       @user = current_user
       @event = Event.find(params[:id])
       @tags = Tag.all
+      @thesetags = @event.tags.all
+      # @hash = Gmaps4rails.build_markers(@event) do |event, marker|
+      #   marker.lat event.latitude
+      #   marker.lng event.longitude
+      # end
       respond_to do |format|
-        format.html { redirect_to user_event_path(@event) }
+        format.html { redirect_to user_event_path(current_user, @event) }
         format.js
       end
     end
@@ -38,10 +43,25 @@ class EventsController < ApplicationController
       end
     end
 
+    def update
+      @user = current_user
+      @event = Event.find(params[:id])
+      @tags = Tag.all
+      tags = params[:tags]
+      tags.each do |tag|
+        if !@event.tags.exists?(:id => tag)
+          @event.tags.push(Tag.find(tag))
+        end
+      end
+      redirect_to root_path
+      # binding.pry
+
+    end
+
    private
 
     def event_params
-      params.require(:event).permit(:title, :short_description, :long_description, :address, :date, :user_id)
+      params.require(:event).permit(:title, :short_description, :long_description, :address, :date, :user_id, :latitude, :longitude)
     end
 
 end

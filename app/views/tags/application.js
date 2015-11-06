@@ -1,4 +1,3 @@
-
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -13,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require underscore
 //= require gmaps/google
-//= require jquery.turbolinks
+//= require underscore
 //= require turbolinks
 //= require_tree .

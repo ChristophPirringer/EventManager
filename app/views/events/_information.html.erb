@@ -3,9 +3,50 @@
 <%= object.long_description %><br>
 <%= object.date %><br>
 <%= object.address %><br>
+<%= object.latitude %><br>
+<%= object.longitude %><br>
 <%= object.user.email %><br>
-<% binding.pry %>
-<% form_for @tags.each do |f| %>
-    <%= tag.select :name, tag.name %>
-  <%= f.submit %>
+
+<% if @event.tags.any? %>
+  <ul>
+  <% @event.tags.each do |tag| %>
+      <li><%= tag.name %></li>
+  <% end %>
+
+  </ul>
+<% else %>
+  <p>You aint got no tags yet dear user.</p>
 <% end %>
+
+<%= form_for [@user, @event] do |f| %>
+  <% @tags.each do |tag| %>
+      <%= check_box_tag "tags[]", tag.id, :id => "tag_#{tag.id}" %>
+      <%= label_tag "tag_#{tag.id}", tag.name %>
+  <% end %>
+  <%= f.submit "Add those tags." %>
+<% end %>
+
+
+
+<script>
+  $("#map-token").click(function() {
+    handler = Gmaps.build('Google');
+
+    handler.buildMap({ provider: {}, internal: {id: 'map'} }, function(){
+      markers = handler.addMarkers([
+        {
+          "lat": <%= object.latitude %>,
+          "lng": <%= object.longitude %>,
+          "picture": {
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": 'hi'
+        }
+      ]);
+
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  });
+</script>
